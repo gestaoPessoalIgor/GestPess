@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="New Task">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <TextField hint="Task Title" text="{{ title }}" class="input mb-4" />
+            
+            <Label text="Due Date" class="mb-2" />
+            <DatePicker date="{{ dueDate }}" class="mb-4" />
+            
+            <Label text="Due Time" class="mb-2" />
+            <TimePicker time="{{ dueTime }}" class="mb-4" />
+            
+            <Label text="Category" class="mb-2" />
+            <ListPicker items="{{ categories }}" selectedIndex="{{ selectedCategoryIndex }}" class="mb-4" />
+            
+            <Label text="Subtasks" class="mb-2" />
+            <ListView items="{{ subtasks }}" class="mb-4">
+                <ListView.itemTemplate>
+                    <GridLayout columns="*, auto" class="p-2">
+                        <TextField text="{{ title }}" hint="Subtask" col="0" />
+                        <Label text="✕" class="text-red-500 p-2" col="1" tap="{{ $parent.onRemoveSubtask }}" />
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+            
+            <Button text="+ Add Subtask" tap="{{ onAddSubtask }}" class="mb-4" />
+            
+            <Button text="Save Task" tap="{{ onSaveTask }}" class="bg-blue-500 text-white p-3 rounded-lg" />
+        </StackLayout>
+    </ScrollView>
+</Page>

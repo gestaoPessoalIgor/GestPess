@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="New Expense">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <TextField hint="Description" text="{{ description }}" class="input mb-4" />
+            
+            <TextField hint="Amount" text="{{ amount }}" keyboardType="number" class="input mb-4" />
+            
+            <Label text="Date" class="mb-2" />
+            <DatePicker date="{{ date }}" class="mb-4" />
+            
+            <Label text="Category" class="mb-2" />
+            <ListPicker items="{{ categories }}" selectedIndex="{{ selectedCategoryIndex }}" class="mb-4" />
+            
+            <Label text="Installments" class="mb-2" />
+            <TextField hint="Number of installments (optional)" text="{{ installments }}" keyboardType="number" class="input mb-4" />
+            
+            <Button text="Save Expense" tap="{{ onSaveExpense }}" class="bg-blue-500 text-white p-3 rounded-lg" />
+        </StackLayout>
+    </ScrollView>
+</Page>

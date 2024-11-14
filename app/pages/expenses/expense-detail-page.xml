@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Expense Details">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+        <ActionItem ios.position="right" android.position="actionBar" tap="{{ onDeleteExpense }}">
+            <Label text="Delete" class="text-red-500" />
+        </ActionItem>
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <Label text="{{ description }}" class="text-2xl font-bold mb-4" textWrap="true" />
+            
+            <GridLayout columns="auto, *" rows="auto, auto, auto" class="mb-4">
+                <Label text="Amount:" class="font-semibold" row="0" col="0" />
+                <Label text="{{ amount, 'R$ ##.##' }}" row="0" col="1" class="ml-2" />
+                
+                <Label text="Date:" class="font-semibold" row="1" col="0" />
+                <Label text="{{ date, 'dd/MM/yyyy' }}" row="1" col="1" class="ml-2" />
+                
+                <Label text="Category:" class="font-semibold" row="2" col="0" />
+                <Label text="{{ category }}" row="2" col="1" class="ml-2" />
+            </GridLayout>
+
+            <StackLayout visibility="{{ totalInstallments > 1 ? 'visible' : 'collapsed' }}" class="mb-4">
+                <Label text="Installment Information" class="font-semibold mb-2" />
+                <Label text="{{ installmentNumber }}/{{ totalInstallments }}" class="text-center" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>

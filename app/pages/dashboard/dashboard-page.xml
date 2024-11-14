@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="GestPess">
+        <ActionItem ios.position="right" android.position="actionBar" tap="{{ onLogout }}">
+            <Label text="Logout" class="action-item" />
+        </ActionItem>
+    </ActionBar>
+    
+    <TabView selectedIndex="{{ selectedTabIndex }}" class="bg-gray-100">
+        <!-- Tasks Tab -->
+        <TabViewItem title="Tasks">
+            <GridLayout rows="auto, *">
+                <Button text="+ New Task" tap="{{ onNewTask }}" class="bg-blue-500 text-white m-2 p-3 rounded-lg" row="0" />
+                <ListView items="{{ tasks }}" row="1" class="list-group">
+                    <ListView.itemTemplate>
+                        <GridLayout columns="*, auto" class="p-2 border-b border-gray-200">
+                            <StackLayout col="0">
+                                <Label text="{{ title }}" class="font-semibold" />
+                                <Label text="{{ dueDate, 'dd/MM/yyyy HH:mm' }}" class="text-sm text-gray-500" />
+                                <Label text="{{ category }}" class="text-xs text-blue-500" />
+                                <ProgressBar value="{{ completedSubtasks }}" maxValue="{{ totalSubtasks }}" class="m-y-2" />
+                            </StackLayout>
+                            <Label text="→" class="text-xl p-2" col="1" tap="{{ $parent.onTaskTap }}" />
+                        </GridLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+            </GridLayout>
+        </TabViewItem>
+
+        <!-- Expenses Tab -->
+        <TabViewItem title="Expenses">
+            <GridLayout rows="auto, *">
+                <Button text="+ New Expense" tap="{{ onNewExpense }}" class="bg-blue-500 text-white m-2 p-3 rounded-lg" row="0" />
+                <ListView items="{{ expenses }}" row="1" class="list-group">
+                    <ListView.itemTemplate>
+                        <GridLayout columns="*, auto" class="p-2 border-b border-gray-200">
+                            <StackLayout col="0">
+                                <Label text="{{ description }}" class="font-semibold" />
+                                <Label text="{{ amount, 'R$ ##.##' }}" class="text-lg text-green-600" />
+                                <Label text="{{ date, 'dd/MM/yyyy' }}" class="text-sm text-gray-500" />
+                            </StackLayout>
+                            <Label text="→" class="text-xl p-2" col="1" tap="{{ $parent.onExpenseTap }}" />
+                        </GridLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+            </GridLayout>
+        </TabViewItem>
+
+        <!-- Reports Tab -->
+        <TabViewItem title="Reports">
+            <ScrollView>
+                <StackLayout class="p-4">
+                    <Label text="Task Statistics" class="text-xl font-bold mb-4" />
+                    <GridLayout columns="*, *" rows="auto, auto" class="mb-6">
+                        <StackLayout col="0" row="0" class="bg-green-100 p-4 m-1 rounded">
+                            <Label text="{{ completedTasks }}" class="text-2xl text-center" />
+                            <Label text="Completed" class="text-center" />
+                        </StackLayout>
+                        <StackLayout col="1" row="0" class="bg-red-100 p-4 m-1 rounded">
+                            <Label text="{{ pendingTasks }}" class="text-2xl text-center" />
+                            <Label text="Pending" class="text-center" />
+                        </StackLayout>
+                    </GridLayout>
+
+                    <Label text="Expense Summary" class="text-xl font-bold mb-4" />
+                    <GridLayout columns="*, *" rows="auto" class="mb-6">
+                        <StackLayout col="0" class="bg-blue-100 p-4 m-1 rounded">
+                            <Label text="{{ totalExpenses, 'R$ ##.##' }}" class="text-2xl text-center" />
+                            <Label text="Total" class="text-center" />
+                        </StackLayout>
+                        <StackLayout col="1" class="bg-purple-100 p-4 m-1 rounded">
+                            <Label text="{{ monthlyAverage, 'R$ ##.##' }}" class="text-2xl text-center" />
+                            <Label text="Monthly Avg" class="text-center" />
+                        </StackLayout>
+                    </GridLayout>
+                </StackLayout>
+            </ScrollView>
+        </TabViewItem>
+    </TabView>
+</Page>

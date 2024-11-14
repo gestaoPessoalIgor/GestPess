@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Task Details">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+        <ActionItem ios.position="right" android.position="actionBar" tap="{{ onDeleteTask }}">
+            <Label text="Delete" class="text-red-500" />
+        </ActionItem>
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <Label text="{{ title }}" class="text-2xl font-bold mb-4" textWrap="true" />
+            
+            <GridLayout columns="auto, *" rows="auto, auto" class="mb-4">
+                <Label text="Due Date:" class="font-semibold" row="0" col="0" />
+                <Label text="{{ dueDate, 'dd/MM/yyyy HH:mm' }}" row="0" col="1" class="ml-2" />
+                
+                <Label text="Category:" class="font-semibold" row="1" col="0" />
+                <Label text="{{ category }}" row="1" col="1" class="ml-2" />
+            </GridLayout>
+
+            <Label text="Progress" class="font-semibold mb-2" />
+            <ProgressBar value="{{ completedSubtasks }}" maxValue="{{ totalSubtasks }}" class="mb-4" />
+            
+            <Label text="Subtasks" class="font-semibold mb-2" />
+            <ListView items="{{ subtasks }}" class="mb-4">
+                <ListView.itemTemplate>
+                    <GridLayout columns="auto, *" class="p-2">
+                        <CheckBox checked="{{ completed }}" tap="{{ $parent.onToggleSubtask }}" col="0" />
+                        <Label text="{{ title }}" textWrap="true" col="1" class="{{ completed ? 'line-through text-gray-500' : '' }}" />
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+</Page>

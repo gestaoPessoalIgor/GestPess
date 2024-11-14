@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1033100357622",
+    "project_id": "app-de-gestao-pessoal",
+    "storage_bucket": "app-de-gestao-pessoal.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1033100357622:android:bcf29a88bc1452e63ca1d7",
+        "android_client_info": {
+          "package_name": "com.gestpess.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgEHxNSRaFdGXgfjF78-kFhbQiEh0hCc4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
